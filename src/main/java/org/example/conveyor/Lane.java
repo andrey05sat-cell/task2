@@ -14,17 +14,10 @@ public final class Lane {
         this.cells = List.copyOf(cells);
     }
 
-    /**
-     * Pushes incoming value into the head (index 0), shifts the lane forward,
-     * returns the value that falls out from the tail.
-     *
-     * Time: O(L), where L = lane length. Extra space: O(1).
-     */
     public int push(int incoming) {
         int last = cells.size() - 1;
         int out = cells.get(last).get();
 
-        // shift tail -> head (backwards) to avoid overwriting
         for (int i = last; i > 0; i--) {
             cells.get(i).set(cells.get(i - 1).get());
         }
